@@ -1,0 +1,19 @@
+
+    <!-- <app-employee-edit></app-employee-edit> -->
+    <div class="container" id="employee-section">
+      <div class="col-md-12 col-xl-12 add-employee">
+        <label id="new-hero">Employee name: </label>
+        <input for="new-hero" #empName />
+        <!-- (click) passes input value to add() and then clears the input -->
+        <button class="add-button" (click)="add(empName.value); empName.value=''">
+          Add Employee
+        </button>
+      </div>
+      <div class="row">
+        <app-employee class="col-md-6 col-xl-3" *ngFor="let employee of employees" [employee]="employee" (modalAction)="openModal($event)"></app-employee>
+      </div>
+      <ng-template adModal></ng-template>
+    </div>
+
+
+<!-- routerLink="/detail/{{employee.id}}" -->
