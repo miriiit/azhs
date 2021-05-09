@@ -1,0 +1,21 @@
+$a-tags: 'a'
+$a-tags-hover: 'a:active, a:hover'
+$li-tag-hover: ':hover, :active'
+ul
+    display: inline-flex
+    list-style: none
+    li
+        a
+            padding: 2px 10px 2px 10px
+            margin: 0px 5px 0px 5px
+            border: 1px solid #343434
+            border-radius: 3px 3px 3px 3px
+        #{$li-tag-hover}
+            background-color:#eee
+        #{$a-tags} 
+            color: #343434
+            text-decoration: none
+            &.active
+                background-color: #6262df
+                color: #fff
+        #{$a-tags-hover}

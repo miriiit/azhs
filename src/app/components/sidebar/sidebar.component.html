@@ -1,6 +1,10 @@
 <nav>
-    <ul>
+    <ul class="list-group-item">
         <li><a routerLink="/">Home</a></li>
-      <li><a routerLink="/employees" routerLinkActive="active">Employees</a></li>
+        <li><a routerLink="/employees" routerLinkActive="active">Employees</a></li>
+
+        <li class="bea-portal-book-menu-single-item">
+          <a   routerLinkActive="active" [routerLink]="['/code']"> Code </a>
+        </li>
     </ul>
   </nav>

@@ -13,6 +13,14 @@ import { EmployeeComponentEdit } from './components/employee/employee.component.
 import { EmployeeActionService } from './Service/employee-action.service';
 import { AppService } from './Service/app.service';
 import { EmployeeDirective } from './directive/employee.directive';
+import { FirstComponent } from './components/first/first.component';
+import { SecondComponent } from './components/second/second.component';
+import { ThirdComponent } from './components/third/third.component';
+import { CustomCodeComponent } from './components/custom-code/custom-code.component';
+import { StoreModule } from '@ngrx/store';
+import { reducers } from './store/index';
+import { environment } from 'src/environments/environment.prod';
+import { StoreDevtoolsModule } from '@ngrx/store-devtools';
 
 
 @NgModule({
@@ -23,13 +31,22 @@ import { EmployeeDirective } from './directive/employee.directive';
     EmployeeDirective,
     EmployeesComponent,
     EmployeeComponent,
-    EmployeeComponentEdit
+    EmployeeComponentEdit,
+    FirstComponent,
+    SecondComponent,
+    ThirdComponent,
+    CustomCodeComponent
     
   ],
   imports: [
     BrowserModule,
     HttpClientModule,
-    AppRoutingModule
+    AppRoutingModule,
+    StoreModule.forRoot(reducers),
+    StoreDevtoolsModule.instrument({
+      maxAge: 25, // Retains last 25 states
+      logOnly: environment.production, // Restrict extension to log-only mode
+    }),
   ],
   providers: [ EmployeeService, EmployeeActionService, AppService ],
   bootstrap: [AppComponent]
