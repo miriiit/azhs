@@ -1,4 +1,4 @@
-import { EnumTabsGroup } from '../../util/enum.tabs.group';
+import { EnumTabsGroup } from '../../util/intdex';
 import * as TabActions from './../actions/tab-actions';
 
 import { TabModel } from './../models/tab-model';

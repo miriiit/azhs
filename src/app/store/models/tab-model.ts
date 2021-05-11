@@ -1,10 +1,9 @@
-import { EnumTabsGroup } from './../../util/enum.tabs.group';
-import { Route } from '@angular/compiler/src/core';
+import { EnumTabsGroup } from '../../util/intdex';
 export interface TabModel {
-    groupId: EnumTabsGroup.TabsCodeManagement;
+    groupId: EnumTabsGroup;
     tabIndex: string;
     tabTitle: string;
     tabId: string;
-    tabRoute: string;
+    route: string;
     status: boolean;
 }

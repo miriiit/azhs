@@ -21,6 +21,9 @@ import { StoreModule } from '@ngrx/store';
 import { reducers } from './store/index';
 import { environment } from 'src/environments/environment.prod';
 import { StoreDevtoolsModule } from '@ngrx/store-devtools';
+import { ProvidersComponent } from './components/providers/providers.component';
+import { ChildAComponent } from './components/providers/child-a/child-a.component';
+import { ChildBComponent } from './components/providers/child-b/child-b.component';
 
 
 @NgModule({
@@ -35,7 +38,10 @@ import { StoreDevtoolsModule } from '@ngrx/store-devtools';
     FirstComponent,
     SecondComponent,
     ThirdComponent,
-    CustomCodeComponent
+    CustomCodeComponent,
+    ProvidersComponent,
+    ChildAComponent,
+    ChildBComponent
     
   ],
   imports: [

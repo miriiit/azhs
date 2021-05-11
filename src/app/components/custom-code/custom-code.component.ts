@@ -2,9 +2,9 @@ import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { Store } from '@ngrx/store';
 import { Subscription } from 'rxjs';
-import { AppState, NavState } from 'src/app/store';
+import { AppState } from 'src/app/store';
 import { selectTabsGroup } from 'src/app/store/selectors';
-import { EnumTabsGroup } from 'src/app/util/enum.tabs.group';
+import { EnumTabsGroup } from 'src/app/util/intdex';
 
 @Component({
   selector: 'app-custom-code',
@@ -29,7 +29,7 @@ export class CustomCodeComponent implements OnInit {
           if (arr && arr.length) {
             arr.forEach(elem => {
               if (elem.status) {
-                this.router.navigate([elem.tabRoute]);
+                this.router.navigate([elem.route]);
               }
             })
           }
@@ -40,7 +40,7 @@ export class CustomCodeComponent implements OnInit {
   }
 
   ngOnDestory(){
-    //this.subscription?.unsubscribe();
+    this.subscription?.unsubscribe();
   }
 
 }

@@ -5,7 +5,7 @@ import { Store } from '@ngrx/store';
 import { Subscription } from 'rxjs';
 import { filter } from 'rxjs/operators';
 import { AppState } from 'src/app/store';
-import { EnumTabsGroup } from 'src/app/util/enum.tabs.group';
+import { EnumTabsGroup } from 'src/app/util/intdex';
 
 import * as TabActions from './../../store/actions/tab-actions';
 
@@ -36,7 +36,7 @@ export class SecondComponent implements OnInit {
       tabIndex: '0',
       tabTitle: 'first-component',
       tabId: '1',
-      tabRoute: this.path,
+      route: this.path,
       status: true,
     };
     this.store.dispatch(new TabActions.TabsActiveRoute(tabModel))
