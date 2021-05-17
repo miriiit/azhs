@@ -3,7 +3,7 @@ import { Router } from '@angular/router';
 import { Store } from '@ngrx/store';
 import { Subscription } from 'rxjs';
 import { AppState } from 'src/app/store';
-import { selectComponents, setlectComponentState } from 'src/app/store/selectors';
+import { selectComponents } from 'src/app/store/selectors';
 import { EnumComp, EnumTabsGroup } from 'src/app/util/intdex';
 
 @Component({

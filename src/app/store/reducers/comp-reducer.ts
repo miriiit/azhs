@@ -11,13 +11,14 @@ const defaultState: CompState = {
     components:  new Map<EnumComp, CompModel>()
 }
 
-const setActive = (state:CompState = defaultState, newData:any) => {
+const setActive = (state:CompState = defaultState, newData:CompModel) => {
     let comp    = state.components.get(newData.id);
     let temMap  = new Map<EnumComp, CompModel>();
-    let tab     = newData.nav;
+    var setIter = newData.nav.values();
+    let tab     = setIter.next().value;
     
     let newNav = new Set<TabModel>();
-
+    let retState = null;
     if(comp){
         let nav = comp.nav;
         if(nav != null){
@@ -34,21 +35,46 @@ const setActive = (state:CompState = defaultState, newData:any) => {
             });
            newNav.add(tab);
         }
+        let obj = Object.assign({}, comp, {nav:newNav});
+        temMap.set(newData.id, obj);
+        retState = {...state.components, components:temMap};
+    }else {
+        temMap.set(newData.id, newData);
+        retState = {...state.components, components:temMap};
     }
     //new Array added in newData by refrence
     
-    let obj = Object.assign({}, newData, {nav:newNav});
-    temMap.set(newData.id, obj);
-
-    let retState = {...state.components, components:temMap};
     return retState;
 }
 
-export function CompReducer(state: CompState = defaultState, action: Action): CompState  {
-    switch(action.type) {
+
+const saveEmployee = (state:CompState = defaultState, newData:any) => {
+    let comp        = state.components.get(newData.id);
+    let temMap      = new Map<EnumComp, CompModel>();
+    let retState;
+    if (comp) {
+        let obj = Object.assign({}, comp, { formData: newData?.employee });
+        temMap.set(newData.id, obj);
+        retState = { ...state.components, components: temMap };
+    }else {
+        retState = { ...state };
+    }
+    return retState;
+}
+
+export function CompReducer(state: CompState = defaultState, action: Action): CompState {
+    switch (action.type) {
         case Actions.SET_ACTIVE:
-            let newState =  setActive(state, action.payload);
-            return newState;
-        break;
+            {
+                let newState = setActive(state, action.payload);
+                return newState;
+            }
+            break;
+        case Actions.SAVE_EMPLOYEE:
+            {
+                let newState = saveEmployee(state, action.payload)
+                return newState;
+            }
+            break;
     }
 }

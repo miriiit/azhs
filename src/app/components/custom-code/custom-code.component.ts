@@ -3,8 +3,8 @@ import { Router } from '@angular/router';
 import { Store } from '@ngrx/store';
 import { Subscription } from 'rxjs';
 import { AppState } from 'src/app/store';
-import { selectTabsGroup } from 'src/app/store/selectors';
-import { EnumTabsGroup } from 'src/app/util/intdex';
+import { selectComponents } from 'src/app/store/selectors';
+import { EnumComp, EnumTabsGroup } from 'src/app/util/intdex';
 
 @Component({
   selector: 'app-custom-code',
@@ -19,26 +19,30 @@ export class CustomCodeComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    let tabsGroup  = this.store.select(selectTabsGroup)
-    if(tabsGroup)
+    let compState  = this.store.select(selectComponents)
+    if(compState)
     {
-
-       this.subscription = tabsGroup.subscribe(state => {
-        if (state && state.size) {
-          let arr = state.get(EnumTabsGroup.TabsCodeManagement);
-          if (arr && arr.length) {
-            arr.forEach(elem => {
-              if (elem.status) {
-                this.router.navigate([elem.route]);
-              }
-            })
+       this.subscription = compState.subscribe(state => {
+        if (state) {
+          let comp = state.get(EnumComp.CodeComp);
+          //EnumTabsGroup.TabsCodeManagement
+          if (comp) {
+            let nav = comp.nav;
+            if(nav && nav.size) {
+              nav.forEach(tab => {
+                if (tab.groupId == EnumTabsGroup.TabsCodeManagement) {
+                  if (tab.status) {
+                    this.router.navigate([tab.route]);
+                  }
+                }
+              })
+            }
+           
           }
         }
       });
     }
-    
   }
-
   ngOnDestory(){
     this.subscription?.unsubscribe();
   }

@@ -4,16 +4,17 @@ import { Store } from '@ngrx/store';
 import { Subscription } from 'rxjs';
 import { filter } from 'rxjs/operators';
 import { AppState } from 'src/app/store';
+import { TabModel } from 'src/app/store/models/tab-model';
 import { EnumComp, EnumTabsGroup } from 'src/app/util/intdex';
 
-import * as Actions from './../../../store/actions/comp-actions';
+import * as Actions from '../../../store/actions/comp-actions';
 
 @Component({
-  selector: 'app-child-b',
-  templateUrl: './child-b.component.html',
-  styleUrls: ['./child-b.component.sass']
+  selector: 'app-child-a',
+  templateUrl: './child-a.component.html',
+  styleUrls: ['./child-a.component.sass']
 })
-export class ChildBComponent implements OnInit {
+export class ChildAComponent implements OnInit {
 
   path?: any;
 
@@ -31,21 +32,25 @@ export class ChildBComponent implements OnInit {
   ngOnInit(): void {
 
     let tabModel = {
-      groupId: EnumTabsGroup.TabsProviderManagement,
-      tabIndex: '1',
-      tabTitle: 'child-b-component',
-      tabId: '1',
+      groupId: EnumTabsGroup.TabsCodeManagement,
+      tabIndex: '0',
+      tabTitle: 'child-a-component',
+      tabId: '0',
       route: this.path,
       status: true
     };
-
+    
+    let set = new Set<TabModel>();
+    set.add(tabModel);
+    
     let compModel = {
-      id: EnumComp.ProviderComp,
-      title: 'child-b-component',
+      id: EnumComp.CodeComp,
+      title: 'code-component-nav',
       route:  this.path,
       status: true,
-      nav: tabModel
+      nav: set
     }
+
     this.store.dispatch(new Actions.SetActive(compModel));
   }
 

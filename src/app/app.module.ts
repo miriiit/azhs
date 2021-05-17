@@ -13,8 +13,6 @@ import { EmployeeComponentEdit } from './components/employee/employee.component.
 import { EmployeeActionService } from './Service/employee-action.service';
 import { AppService } from './Service/app.service';
 import { EmployeeDirective } from './directive/employee.directive';
-import { FirstComponent } from './components/first/first.component';
-import { SecondComponent } from './components/second/second.component';
 import { ThirdComponent } from './components/third/third.component';
 import { CustomCodeComponent } from './components/custom-code/custom-code.component';
 import { StoreModule } from '@ngrx/store';
@@ -22,9 +20,10 @@ import { reducers } from './store/index';
 import { environment } from 'src/environments/environment.prod';
 import { StoreDevtoolsModule } from '@ngrx/store-devtools';
 import { ProvidersComponent } from './components/providers/providers.component';
-import { ChildAComponent } from './components/providers/child-a/child-a.component';
-import { ChildBComponent } from './components/providers/child-b/child-b.component';
-
+import { ChildAComponent } from './components/custom-code/child-a/child-a.component';
+import { ChildBComponent } from './components/custom-code/child-b/child-b.component';
+import { EmployeeFormComponent } from './components/custom-code/child-a/employee-form/employee-form.component';
+import { FormsModule } from '@angular/forms';
 
 @NgModule({
   declarations: [
@@ -35,17 +34,17 @@ import { ChildBComponent } from './components/providers/child-b/child-b.componen
     EmployeesComponent,
     EmployeeComponent,
     EmployeeComponentEdit,
-    FirstComponent,
-    SecondComponent,
     ThirdComponent,
     CustomCodeComponent,
     ProvidersComponent,
     ChildAComponent,
-    ChildBComponent
+    ChildBComponent,
+    EmployeeFormComponent
     
   ],
   imports: [
     BrowserModule,
+    FormsModule,
     HttpClientModule,
     AppRoutingModule,
     StoreModule.forRoot(reducers),

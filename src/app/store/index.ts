@@ -1,4 +1,4 @@
-import { TabReducer } from './reducers/tab-reducer';
+
 import { ActionReducerMap } from '@ngrx/store';
 import { TabModel } from './models/tab-model';
 import { EnumComp, EnumTabsGroup } from '../util/intdex';
@@ -18,11 +18,9 @@ export interface NavState {
 };
 
 export interface AppState{
-    navState: NavState,
     compState: CompState
 }
 
 export const reducers: ActionReducerMap<AppState, any> = {
-    navState: TabReducer,
     compState: CompReducer
 };

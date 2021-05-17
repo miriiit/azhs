@@ -31,7 +31,7 @@ const TabSwitch = (state:NavState = defaultState, newData:TabModel) => {
     return retState;
 }
 
-export function TabReducer(state: NavState = defaultState, action: Action): NavState  {
+function TabReducer(state: NavState = defaultState, action: Action): NavState  {
     switch(action.type) {
         case TabActions.TAB_SWITCH:
             let newState =  TabSwitch(state, action.payload);

@@ -6,4 +6,5 @@ export interface CompModel {
     route: string;
     status: boolean;
     nav: Set<TabModel>;
+    formData?: any;
 }
